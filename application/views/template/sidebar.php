@@ -32,9 +32,9 @@
                                 <a href="<?= base_url('mahasiswa') ?>">List</a>
                             </li>
 
-                            <li>
+                            <!-- <li>
                                 <a href="<?= base_url('mahasiswa/tambah') ?>">Post Mahasiswa</a>
-                            </li>
+                            </li> -->
 
                             <!-- <li>
                                 <a href="<?= base_url('mahasiswa/konsentrasi') ?>">Konsentrasi</a>
