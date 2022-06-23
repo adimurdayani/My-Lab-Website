@@ -41,7 +41,12 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="nim">NIM</label>
-                                                <input type="number" id="nim" name="nim" class="form-control" value="<?= $get_pendaftaran->nim ?>" placeholder="Input 15xxx">
+                                                <select name="nim" id="nim" class="form-control" data-toggle="select2">
+                                                    <option value="">-- Pilih NIM --</option>
+                                                    <?php foreach ($get_register as $register) : ?>
+                                                        <option value="<?= $register->nim ?>" <?php if ($get_pendaftaran->nim == $register->nim) : ?> selected <?php endif; ?>><?= $register->nama; ?></option>
+                                                    <?php endforeach ?>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -79,7 +84,9 @@
                                         <label for="kategori_lab">Laboratorium</label>
                                         <select class="form-control" name="kategori_lab">
                                             <?php foreach ($get_kategori_register as $register) : ?>
-                                                <option value="<?= $register->id ?>" <?php if ($register->id == $get_pendaftaran->kategori_lab) : ?> selected <?php endif; ?>><?= $register->kategori ?></option>
+                                                <?php if ($register->kategori == "Hardware") : ?>
+                                                    <option value="<?= $register->id ?>" <?php if ($register->id == $get_pendaftaran->kategori_lab) : ?> selected <?php endif; ?>><?= $register->kategori ?></option>
+                                                <?php endif; ?>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>

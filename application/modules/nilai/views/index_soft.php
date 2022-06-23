@@ -173,10 +173,10 @@
 
     <!-- Tambah modal -->
     <div id="tambah" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Tambah Nilai</h4>
+                    <h4 class="modal-title">Tambah Nilai Software</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 </div>
                 <?php echo form_open("nilai/nilai_soft/tambah"); ?>
@@ -192,15 +192,29 @@
                         </select>
                     </div>
 
-                    <div class="form-group">
-                        <label for="kategori_lab" class="control-label">Laboratorium</label>
-                        <select name="kategori_lab" id="kategori_lab" class="form-control">
-                            <?php foreach ($get_kategori_lab as $lab) : ?>
-                                <?php if ($lab->id == 4) : ?>
-                                    <option value="<?= $lab->id ?>"><?= $lab->kategori ?></option>
-                                <?php endif; ?>
-                            <?php endforeach; ?>
-                        </select>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="kategori_lab" class="control-label">Laboratorium</label>
+                                <select name="kategori_lab" id="kategori_lab" class="form-control">
+                                    <?php foreach ($get_kategori_lab as $lab) : ?>
+                                        <?php if ($lab->id == 4) : ?>
+                                            <option value="<?= $lab->id ?>"><?= $lab->kategori ?></option>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="kategori_praktikum_id" class="control-label">Praktikum</label>
+                                <select name="kategori_praktikum_id" id="kategori_praktikum_id" class="form-control">
+                                    <?php foreach ($get_kategori_praktikum as $praktikum) : ?>
+                                        <option value="<?= $praktikum->id ?>"><?= $praktikum->kategori ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="form-group mb-3">
@@ -225,10 +239,10 @@
     <!-- edit modal -->
     <?php foreach ($get_nilai_soft as $edit) : ?>
         <div id="edit<?= $edit->id ?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Edit Nilai</h4>
+                        <h4 class="modal-title">Edit Nilai Software</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     </div>
                     <?php echo form_open("nilai/nilai_soft/edit"); ?>
@@ -244,15 +258,31 @@
                             </select>
                         </div>
 
-                        <div class="form-group">
-                            <label for="kategori_lab" class="control-label">Laboratorium</label>
-                            <select name="kategori_lab" id="kategori_lab" class="form-control">
-                                <?php foreach ($get_kategori_lab as $lab2) : ?>
-                                    <?php if ($lab2->id != 3) : ?>
-                                        <option value="<?= $lab2->id ?>" <?php if ($edit->kategori_lab == $lab2->id) : ?> selected <?php endif; ?>><?= $lab2->kategori ?></option>
-                                    <?php endif; ?>
-                                <?php endforeach; ?>
-                            </select>
+                        <div class="row">
+                            <dvi class="col-md-">
+                                <div class="form-group">
+                                    <label for="kategori_lab" class="control-label">Laboratorium</label>
+                                    <select name="kategori_lab" id="kategori_lab" class="form-control">
+                                        <?php foreach ($get_kategori_lab as $lab2) : ?>
+                                            <?php if ($lab2->id != 3) : ?>
+                                                <option value="<?= $lab2->id ?>" <?php if ($edit->kategori_lab == $lab2->id) : ?> selected <?php endif; ?>><?= $lab2->kategori ?></option>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                            </dvi>
+                            <div class="col-md-6">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="kategori_praktikum_id" class="control-label">Praktikum</label>
+                                        <select name="kategori_praktikum_id" id="kategori_praktikum_id" class="form-control">
+                                            <?php foreach ($get_kategori_praktikum as $praktikum) : ?>
+                                                <option value="<?= $praktikum->id ?>" <?php if ($edit->kategori_praktikum_id == $praktikum->id) : ?> selected <?php endif; ?>><?= $praktikum->kategori ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="form-group mb-3">

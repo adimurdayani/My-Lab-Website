@@ -50,6 +50,7 @@ class Pendaftaran_soft extends CI_Controller
             $data['get_config'] = $this->db->get('tb_konfigurasi')->row();
             $data['get_kategori_praktikum'] = $this->db->get('tb_kategori_praktikum')->result();
             $data['get_kategori_register'] = $this->db->get('tb_kategori_register')->result();
+            $data['get_register'] = $this->db->get('tb_register')->result();
             $data['kode'] = $this->generate_code(10);
 
             $this->db->order_by('id', 'desc');
@@ -141,6 +142,7 @@ class Pendaftaran_soft extends CI_Controller
             $data['get_pendaftaran'] = $this->db->get_where('tb_pendaftaran_s', ['id' => $decode])->row();
             $data['get_kategori_praktikum'] = $this->db->get('tb_kategori_praktikum')->result();
             $data['get_kategori_register'] = $this->db->get('tb_kategori_register')->result();
+            $data['get_register'] = $this->db->get('tb_register')->result();
 
             $this->db->order_by('id', 'desc');
             $this->db->limit(3);

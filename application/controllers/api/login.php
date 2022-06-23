@@ -129,7 +129,6 @@ class login extends MY_Controller
     $id = $this->post('id');
 
     if ($id == 0) {
-
       $this->response([
         'status' => 400,
         'message' => 'id tidak ditemukan'
@@ -156,6 +155,31 @@ class login extends MY_Controller
           'status' => 200,
           'message' => 'Data berhasil disimpan',
           'data' => $data
+        ], REST_Controller::HTTP_OK);
+      }
+    }
+  }
+
+  public function email_user_post()
+  {
+    $email = $this->post('email');
+    if ($email === null) {
+      $this->response([
+        'status' => 400,
+        'message' => 'email tidak ditemukan'
+      ], REST_Controller::HTTP_BAD_REQUEST);
+    } else {
+      $user = $this->db->get_where('tb_register', ['email' => $email])->row_array();
+      if ($user === null) {
+        $this->response([
+          'status' => 400,
+          'message' => 'pengguna tidak ditemukan'
+        ], REST_Controller::HTTP_BAD_REQUEST);
+      } else {
+        $this->response([
+          'status' => 200,
+          'message' => 'sukses',
+          'data_register' => $user
         ], REST_Controller::HTTP_OK);
       }
     }

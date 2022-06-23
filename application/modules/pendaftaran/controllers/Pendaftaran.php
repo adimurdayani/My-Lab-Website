@@ -51,6 +51,7 @@ class Pendaftaran extends CI_Controller
             $data['get_kategori_register'] = $this->db->get('tb_kategori_register')->result();
             $this->db->limit(3);
             $data['get_register_limit'] = $this->db->get('tb_register')->result();
+            $data['get_register'] = $this->db->get('tb_register')->result();
 
             $this->load->view('template/header', $data, FALSE);
             $this->load->view('template/topbar', $data, FALSE);
@@ -137,6 +138,7 @@ class Pendaftaran extends CI_Controller
             $data['get_pendaftaran'] = $this->db->get_where('tb_pendaftaran_h', ['id' => $decode])->row();
             $data['get_kategori_praktikum'] = $this->db->get('tb_kategori_praktikum')->result();
             $data['get_kategori_register'] = $this->db->get('tb_kategori_register')->result();
+            $data['get_register'] = $this->db->get('tb_register')->result();
 
             $this->db->order_by('id', 'desc');
             $this->db->limit(3);

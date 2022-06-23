@@ -145,28 +145,10 @@
                 </li>
 
                 <li>
-                    <a href="#informasi" data-toggle="collapse">
+                    <a href="<?= base_url('informasi') ?>">
                         <i class="fe-tv"></i>
                         <span> Informasi</span>
-                        <span class="menu-arrow"></span>
                     </a>
-                    <div class="collapse" id="informasi">
-                        <ul class="nav-second-level">
-
-                            <li>
-                                <a href="<?= base_url('informasi/kategori') ?>">Kategori</a>
-                            </li>
-
-                            <li>
-                                <a href="<?= base_url('informasi') ?>">List</a>
-                            </li>
-
-                            <li>
-                                <a href="<?= base_url('berita/') ?>">Post Informasi</a>
-                            </li>
-
-                        </ul>
-                    </div>
                 </li>
 
                 <li>
@@ -177,15 +159,11 @@
                     </a>
                     <div class="collapse" id="sertifikat">
                         <ul class="nav-second-level">
-
-                            <li>
-                                <a href="<?= base_url('sertifikat/kategori_galeri') ?>">Kategori</a>
-                            </li>
                             <li>
                                 <a href="<?= base_url('sertifikat') ?>">List </a>
                             </li>
                             <li>
-                                <a href="<?= base_url('galeri/tambah') ?>">Post Sertifikat</a>
+                                <a href="<?= base_url('sertifikat/tambah') ?>">Post Sertifikat</a>
                             </li>
 
                         </ul>

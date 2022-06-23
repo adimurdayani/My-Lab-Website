@@ -25,6 +25,7 @@ class Nilai_soft extends CI_Controller
             $data['get_nim'] = $this->db->get('tb_pendaftaran_s')->result();
             $data['get_kategori_lab'] = $this->db->get('tb_kategori_register')->result();
             $data['get_nilai_soft'] = $this->m_nilai->get_nilai_s();
+            $data['get_kategori_praktikum'] = $this->db->get('tb_kategori_praktikum')->result();
 
             $this->db->order_by('id', 'desc');
             $this->db->limit(3);
@@ -64,7 +65,8 @@ class Nilai_soft extends CI_Controller
                 'nilai_tugas' => $this->input->post('nilai_tugas'),
                 'nilai_uas' => $this->input->post('nilai_uas'),
                 'created_at' => date("d M Y"),
-                'updated_at' => date("d M Y")
+                'updated_at' => date("d M Y"),
+                'kategori_praktikum_id' => $this->input->post('kategori_praktikum_id')
             ];
             $this->db->insert('tb_nilai_s', $data);
             $this->session->set_flashdata(
@@ -108,7 +110,8 @@ class Nilai_soft extends CI_Controller
                 'nim'           => $this->input->post('nim'),
                 'nilai_tugas'   => $this->input->post('nilai_tugas'),
                 'nilai_uas'     => $this->input->post('nilai_uas'),
-                'updated_at'    => date("d M Y")
+                'updated_at'    => date("d M Y"),
+                'kategori_praktikum_id' => $this->input->post('kategori_praktikum_id')
             ];
             $this->db->where('id', $id);
             $this->db->update('tb_nilai_s', $data);
