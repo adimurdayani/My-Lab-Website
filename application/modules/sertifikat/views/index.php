@@ -51,63 +51,61 @@
 
                                         <?php foreach ($get_sertifikat as $data) :
                                             $nilai_hardware  = $this->db->get_where('tb_nilai_h', ['id' => $data['nilai_hard_id']])->row_array();
-                                            $register_dua = $this->db->get_where('tb_register', ['nim' => $nilai_hardware['nim']])->row_array();
-                                            $kategori_lab_dua  = $this->db->get_where('tb_kategori_register', ['id' => $nilai_hardware['kategori_lab']])->row_array();
-                                            $kategori_praktikum_dua  = $this->db->get_where('tb_kategori_praktikum', ['id' => $nilai_hardware['kategori_praktikum_id']])->row_array();
+                                            if ($nilai_hardware['nim'] != null && $nilai_hardware['kategori_lab'] != null && $nilai_hardware['kategori_praktikum_id'] != null) {
+                                                # code...
+                                                $register_dua = $this->db->get_where('tb_register', ['nim' => $nilai_hardware['nim']])->row_array();
+                                                $kategori_lab_dua  = $this->db->get_where('tb_kategori_register', ['id' => $nilai_hardware['kategori_lab']])->row_array();
+                                                $kategori_praktikum_dua  = $this->db->get_where('tb_kategori_praktikum', ['id' => $nilai_hardware['kategori_praktikum_id']])->row_array();
+                                            }
 
                                             $nilai_soft  = $this->db->get_where('tb_nilai_s', ['id' => $data['nilai_soft_id']])->row_array();
-                                            $register_satu = $this->db->get_where('tb_register', ['nim' => $nilai_soft['nim']])->row_array();
-                                            $kategori_lab_satu  = $this->db->get_where('tb_kategori_register', ['id' => $nilai_soft['kategori_lab']])->row_array();
-                                            $kategori_praktikum_satu  = $this->db->get_where('tb_kategori_praktikum', ['id' => $nilai_soft['kategori_praktikum_id']])->row_array();
+                                            if ($nilai_soft['nim'] != null && $nilai_soft['kategori_lab'] != null && $nilai_soft['kategori_praktikum_id'] != null) {
+                                                # code...
+                                                $register_satu = $this->db->get_where('tb_register', ['nim' => $nilai_soft['nim']])->row_array();
+                                                $kategori_lab_satu  = $this->db->get_where('tb_kategori_register', ['id' => $nilai_soft['kategori_lab']])->row_array();
+                                                $kategori_praktikum_satu  = $this->db->get_where('tb_kategori_praktikum', ['id' => $nilai_soft['kategori_praktikum_id']])->row_array();
+                                            }
                                         ?>
                                             <tr>
                                                 <td><input type="checkbox" class="check-item" name="id[]" value="<?= $data['id'] ?>"></td>
                                                 <td>
-                                                    <?php if (isset($data['nilai_hard_id']) != null) : ?>
-                                                        <?php if ($data['nilai_hard_id'] == $nilai_hardware['id']) : ?>
-                                                            <?= $register_dua['nim'] ?>
-                                                        <?php endif; ?>
+                                                    <?php if ($data['nilai_hard_id'] == $nilai_hardware['id']) : ?>
+                                                        <?= $register_dua['nim'] ?>
+                                                    <?php endif; ?>
 
-                                                        <?php if ($data['nilai_soft_id'] == $nilai_soft['id']) : ?>
-                                                            <?= $register_satu['nim'] ?>
+                                                    <?php if ($data['nilai_soft_id'] == $nilai_soft['id']) : ?>
+                                                        <?= $register_satu['nim'] ?>
 
-                                                        <?php endif; ?>
                                                     <?php endif; ?>
                                                 </td>
                                                 <td>
-                                                    <?php if (isset($data['nilai_hard_id']) != null) : ?>
-                                                        <?php if ($data['nilai_hard_id'] == $nilai_hardware['id']) : ?>
-                                                            <?= $register_dua['nama'] ?>
-                                                        <?php endif; ?>
+                                                    <?php if ($data['nilai_hard_id'] == $nilai_hardware['id']) : ?>
+                                                        <?= $register_dua['nama'] ?>
+                                                    <?php endif; ?>
 
-                                                        <?php if ($data['nilai_soft_id'] == $nilai_soft['id']) : ?>
-                                                            <?= $register_satu['nama'] ?>
+                                                    <?php if ($data['nilai_soft_id'] == $nilai_soft['id']) : ?>
+                                                        <?= $register_satu['nama'] ?>
 
-                                                        <?php endif; ?>
                                                     <?php endif; ?>
                                                 </td>
                                                 <td class="text-center">
-                                                    <?php if (isset($data['nilai_hard_id']) != null) : ?>
-                                                        <?php if ($data['nilai_hard_id'] == $nilai_hardware['id']) : ?>
-                                                            <?= $kategori_lab_dua['kategori'] ?>
-                                                        <?php endif; ?>
+                                                    <?php if ($data['nilai_hard_id'] == $nilai_hardware['id']) : ?>
+                                                        <?= $kategori_lab_dua['kategori'] ?>
+                                                    <?php endif; ?>
 
-                                                        <?php if ($data['nilai_soft_id'] == $nilai_soft['id']) : ?>
-                                                            <?= $kategori_lab_satu['kategori'] ?>
+                                                    <?php if ($data['nilai_soft_id'] == $nilai_soft['id']) : ?>
+                                                        <?= $kategori_lab_satu['kategori'] ?>
 
-                                                        <?php endif; ?>
                                                     <?php endif; ?>
                                                 </td>
                                                 <td>
-                                                    <?php if (isset($data['nilai_hard_id']) != null) : ?>
-                                                        <?php if ($data['nilai_hard_id'] == $nilai_hardware['id']) : ?>
-                                                            <?= $kategori_praktikum_dua['kategori'] ?>
-                                                        <?php endif; ?>
+                                                    <?php if ($data['nilai_hard_id'] == $nilai_hardware['id']) : ?>
+                                                        <?= $kategori_praktikum_dua['kategori'] ?>
+                                                    <?php endif; ?>
 
-                                                        <?php if ($data['nilai_soft_id'] == $nilai_soft['id']) : ?>
-                                                            <?= $kategori_praktikum_satu['kategori'] ?>
+                                                    <?php if ($data['nilai_soft_id'] == $nilai_soft['id']) : ?>
+                                                        <?= $kategori_praktikum_satu['kategori'] ?>
 
-                                                        <?php endif; ?>
                                                     <?php endif; ?>
                                                 </td>
                                                 <td class="text-center">

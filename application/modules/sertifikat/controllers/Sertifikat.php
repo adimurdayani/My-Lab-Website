@@ -224,6 +224,13 @@ class Sertifikat extends CI_Controller
     public function hapus($id)
     {
         $getid = base64_decode($id);
+
+        $data_img = $this->db->get_where('tb_sertifikat', ['id' => $getid])->row();
+        if ($data_img->img_sertifikat != null) {
+            $target_img = './assets/backend/images/upload/' . $data_img->img_sertifikat;
+            unlink($target_img);
+        }
+
         $this->db->delete('tb_sertifikat', ['id' => $getid]);
         redirect('sertifikat', 'refresh');
     }
