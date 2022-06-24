@@ -133,9 +133,12 @@ class Sertifikat extends CI_Controller
             $data['get_mahasiswa'] = $this->db->get('tb_register')->result_array();
 
             $getid = base64_decode($id);
-            $data['get_sertifikat'] = $this->m_sertifikat->get_sertifikat_id($getid);
+            $data['get_sertifikat'] = $this->db->get_where('tb_sertifikat', ['id' => $getid])->row_array();
+            $this->db->order_by('id', 'desc');
+            $data['get_nilai_h'] = $this->m_sertifikat->get_nilai_h();
+            $data['get_nilai_s'] = $this->m_sertifikat->get_nilai_s();
 
-            $this->form_validation->set_rules('user_id', 'id user', 'trim|required');
+            $this->form_validation->set_rules('img_sertifikat', 'id user', 'trim');
 
             if ($this->form_validation->run() == FALSE) {
                 $this->load->view('template/header', $data, FALSE);
