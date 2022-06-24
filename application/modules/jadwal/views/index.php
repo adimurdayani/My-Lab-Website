@@ -40,7 +40,7 @@
                                         <tr>
                                             <th><input type="checkbox" id="chack-all"></th>
                                             <th>Praktikum</th>
-                                            <th>Dosen</th>
+                                            <th>Asisten Lab</th>
                                             <th>Tanggal</th>
                                             <th>Jam</th>
                                             <th>Action</th>
@@ -113,7 +113,7 @@
                         </div>
                     </div>
                     <div class="form-group mb-3">
-                        <label for="nama_dosen">Nama Dosen <span class="text-danger">*</span></label>
+                        <label for="nama_dosen">Asisten Lab <span class="text-danger">*</span></label>
                         <input type="text" id="nama_dosen" name="nama_dosen" class="form-control" value="<?= set_value('nama_dosen') ?>" require>
                     </div>
 
@@ -169,7 +169,7 @@
                             </div>
                         </div>
                         <div class="form-group mb-3">
-                            <label for="nama_dosen">Nama Dosen <span class="text-danger">*</span></label>
+                            <label for="nama_dosen">Asisten Lab <span class="text-danger">*</span></label>
                             <input type="text" id="nama_dosen" name="nama_dosen" class="form-control" value="<?= $edit->nama_dosen ?>" require>
                         </div>
 
