@@ -50,6 +50,7 @@ class M_sertifikat extends CI_Model
         $no_sertifikat = $sertifikat + 1;
 
         $data = [
+            'nim' => $img_sertifikat,
             'img_sertifikat' => $img_sertifikat,
             'created_at' => date('d M Y'),
             'no_sertifikat' => "SL-00" . $no_sertifikat,

@@ -63,43 +63,51 @@
                                             <tr>
                                                 <td><input type="checkbox" class="check-item" name="id[]" value="<?= $data['id'] ?>"></td>
                                                 <td>
-                                                    <?php if ($data['nilai_hard_id'] == $nilai_hardware['id']) : ?>
-                                                        <?= $register_dua['nim'] ?>
-                                                    <?php endif; ?>
+                                                    <?php if (isset($data['nilai_hard_id']) != null) : ?>
+                                                        <?php if ($data['nilai_hard_id'] == $nilai_hardware['id']) : ?>
+                                                            <?= $register_dua['nim'] ?>
+                                                        <?php endif; ?>
 
-                                                    <?php if ($data['nilai_soft_id'] == $nilai_soft['id']) : ?>
-                                                        <?= $register_satu['nim'] ?>
+                                                        <?php if ($data['nilai_soft_id'] == $nilai_soft['id']) : ?>
+                                                            <?= $register_satu['nim'] ?>
 
+                                                        <?php endif; ?>
                                                     <?php endif; ?>
                                                 </td>
                                                 <td>
-                                                    <?php if ($data['nilai_hard_id'] == $nilai_hardware['id']) : ?>
-                                                        <?= $register_dua['nama'] ?>
-                                                    <?php endif; ?>
+                                                    <?php if (isset($data['nilai_hard_id']) != null) : ?>
+                                                        <?php if ($data['nilai_hard_id'] == $nilai_hardware['id']) : ?>
+                                                            <?= $register_dua['nama'] ?>
+                                                        <?php endif; ?>
 
-                                                    <?php if ($data['nilai_soft_id'] == $nilai_soft['id']) : ?>
-                                                        <?= $register_satu['nama'] ?>
+                                                        <?php if ($data['nilai_soft_id'] == $nilai_soft['id']) : ?>
+                                                            <?= $register_satu['nama'] ?>
 
+                                                        <?php endif; ?>
                                                     <?php endif; ?>
                                                 </td>
                                                 <td class="text-center">
-                                                    <?php if ($data['nilai_hard_id'] == $nilai_hardware['id']) : ?>
-                                                        <?= $kategori_lab_dua['kategori'] ?>
-                                                    <?php endif; ?>
+                                                    <?php if (isset($data['nilai_hard_id']) != null) : ?>
+                                                        <?php if ($data['nilai_hard_id'] == $nilai_hardware['id']) : ?>
+                                                            <?= $kategori_lab_dua['kategori'] ?>
+                                                        <?php endif; ?>
 
-                                                    <?php if ($data['nilai_soft_id'] == $nilai_soft['id']) : ?>
-                                                        <?= $kategori_lab_satu['kategori'] ?>
+                                                        <?php if ($data['nilai_soft_id'] == $nilai_soft['id']) : ?>
+                                                            <?= $kategori_lab_satu['kategori'] ?>
 
+                                                        <?php endif; ?>
                                                     <?php endif; ?>
                                                 </td>
                                                 <td>
-                                                    <?php if ($data['nilai_hard_id'] == $nilai_hardware['id']) : ?>
-                                                        <?= $kategori_praktikum_dua['kategori'] ?>
-                                                    <?php endif; ?>
+                                                    <?php if (isset($data['nilai_hard_id']) != null) : ?>
+                                                        <?php if ($data['nilai_hard_id'] == $nilai_hardware['id']) : ?>
+                                                            <?= $kategori_praktikum_dua['kategori'] ?>
+                                                        <?php endif; ?>
 
-                                                    <?php if ($data['nilai_soft_id'] == $nilai_soft['id']) : ?>
-                                                        <?= $kategori_praktikum_satu['kategori'] ?>
+                                                        <?php if ($data['nilai_soft_id'] == $nilai_soft['id']) : ?>
+                                                            <?= $kategori_praktikum_satu['kategori'] ?>
 
+                                                        <?php endif; ?>
                                                     <?php endif; ?>
                                                 </td>
                                                 <td class="text-center">

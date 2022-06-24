@@ -195,6 +195,24 @@ class Sertifikat extends CI_Controller
         $this->load->view('cetak-sertifikat', $data, FALSE);
     }
 
+    public function cetak_sertifikat_software($id)
+    {
+        $data['title'] = "Sertifika";
+        $nilai = $this->db->get_where('tb_nilai_s', ['nim' => $id])->row();
+        $sertifikat = $this->db->get_where('tb_sertifikat', ['nilai_soft_id' => $nilai->id])->row_array();
+        $data['get_sertifikat'] = $this->db->get_where('tb_sertifikat', ['id' => $sertifikat['id']])->row_array();
+        $this->load->view('cetak-sertifikat', $data, FALSE);
+    }
+
+    public function cetak_sertifikat_hardware($id)
+    {
+        $data['title'] = "Sertifika";
+        $nilai = $this->db->get_where('tb_nilai_h', ['nim' => $id])->row();
+        $sertifikat = $this->db->get_where('tb_sertifikat', ['nilai_hard_id' => $nilai->id])->row_array();
+        $data['get_sertifikat'] = $this->db->get_where('tb_sertifikat', ['id' => $sertifikat['id']])->row_array();
+        $this->load->view('cetak-sertifikat', $data, FALSE);
+    }
+
     public function detail($id)
     {
         $data['title'] = "Sertifika";

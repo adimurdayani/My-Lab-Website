@@ -35,39 +35,25 @@
                                     <thead>
                                         <tr>
                                             <th><input type="checkbox" id="chack-all"></th>
-                                            <th>Laboratorium</th>
-                                            <th>Keterangan</th>
-                                            <th>jadwal</th>
-                                            <th>Tanggal</th>
-                                            <th>Action</th>
+                                            <th class="text-center">Laboratorium</th>
+                                            <th class="text-center">Keterangan</th>
+                                            <th class="text-center">Tanggal Buka</th>
+                                            <th class="text-center">Tanggal Tutup</th>
+                                            <th class="text-center">Action</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
                                         <?php foreach ($get_informasi as $data) : ?>
                                             <tr>
-                                                <td><input type="checkbox" class="check-item" name="parent_id[]" value="<?= $data['parent_id'] ?>"></td>
+                                                <td><input type="checkbox" class="check-item" name="id[]" value="<?= $data['id'] ?>"></td>
                                                 <td><?= $data['kategori'] ?></td>
                                                 <td><?= $data['keterangan'] ?></td>
-                                                <td>
-                                                    <?php
-                                                    $jadwal = $this->db->get_where('tb_informasi_detail', ['informasi_id' => $data['parent_id']])->result_array();
-                                                    foreach ($jadwal as $j) :
-                                                    ?>
-                                                        <ul>
-                                                            <li>Nama Praktikum: <span class="badge badge-outline-blue"><?= $j['nama_praktikum'] ?></span> </li>
-                                                            <ul>
-                                                                <li>Tanggal Praktikum: <span class="badge badge-outline-success"><?= $j['tanggal_praktikum'] ?></span> </li>
-                                                                <li>Jam Praktikum: <span class="badge badge-outline-success"><?= $j['jam_praktikum'] ?></span> </li>
-                                                            </ul>
-                                                        </ul>
-                                                    <?php endforeach; ?>
-                                                </td>
-                                                <td><?= $data['tanggal'] ?></td>
-                                                <td>
-                                                    <a href=" javascript:void(0);" data-target="#detail<?= $data['id'] ?>" class="btn btn-outline-info" data-toggle="modal" title="Detail informasi" data-plugin="tippy" data-tippy-placement="top"><i class="fe-eye"></i></a>
-                                                    <a href="<?= base_url('informasi/edit/') . base64_encode($data['parent_id']) ?>" class="btn btn-outline-warning title=" Edit informasi" data-plugin="tippy" data-tippy-placement="top"><i class="fe-edit"></i></a>
-                                                    <a href="<?= base_url('informasi/hapus/') . base64_encode($data['parent_id']) ?>" class="btn btn-outline-danger hapus" title="Hapus informasi" data-plugin="tippy" data-tippy-placement="top"><i class="fe-trash"></i> </a>
+                                                <td class="text-center"><?= $data['tanggal_buka'] ?></td>
+                                                <td class="text-center"><?= $data['tanggal_tutup'] ?></td>
+                                                <td class="text-center">
+                                                    <a href="<?= base_url('informasi/edit/') . base64_encode($data['id']) ?>" class="btn btn-outline-warning " title=" Edit informasi" data-plugin="tippy" data-tippy-placement="top"><i class="fe-edit"></i></a>
+                                                    <a href="<?= base_url('informasi/hapus/') . base64_encode($data['id']) ?>" class="btn btn-outline-danger hapus" title="Hapus informasi" data-plugin="tippy" data-tippy-placement="top"><i class="fe-trash"></i> </a>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>

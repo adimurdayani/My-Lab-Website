@@ -55,6 +55,20 @@
             /*mengatur lebar tag div*/
             width: auto;
         }
+
+        @media print {
+            @page {
+                size: 330mm 210mm;
+                margin: 20px;
+            }
+
+            * {
+                -webkit-print-color-adjust: exact !important;
+                /*Chrome, Safari */
+                color-adjust: exact !important;
+                /*Firefox*/
+            }
+        }
     </style>
 </head>
 
@@ -169,6 +183,9 @@
             </div>
         </div>
     </div>
+    <script>
+        window: print()
+    </script>
 </body>
 
 </html>

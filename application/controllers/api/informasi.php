@@ -8,6 +8,7 @@ class informasi extends MY_Controller
     public function index_get()
     {
         // mengambil data yang di kirim
+        $this->db->order_by('id', 'desc');
         $informasi = $this->db->get('tb_informasi')->result_array();
 
         if ($informasi) {
@@ -23,32 +24,6 @@ class informasi extends MY_Controller
                 'status'  => 400,
                 'message' => 'data tidak ditemukan'
             ], REST_Controller::HTTP_NOT_FOUND);
-        }
-    }
-
-    public function detail_informasi_post()
-    {
-        $informasi_id = $this->post('informasi_id');
-        if ($informasi_id === null) {
-            $this->response([
-                'status'  => 400,
-                'message' => 'data tidak ditemukan'
-            ], REST_Controller::HTTP_NOT_FOUND);
-        } else {
-            $detail_informasi = $this->db->get_where('tb_informasi_detail', ['informasi_id' => $informasi_id])->result_array();
-        }
-
-        if ($detail_informasi == 0) {
-            $this->response([
-                'status'  => 400,
-                'message' => 'Data belum diupdate'
-            ], REST_Controller::HTTP_BAD_REQUEST);
-        }else{
-            $this->response([
-                'status'                => 200,
-                'message'               => 'sukses',
-                'informasi_detail'      => $detail_informasi
-            ], REST_Controller::HTTP_OK);
         }
     }
 }
