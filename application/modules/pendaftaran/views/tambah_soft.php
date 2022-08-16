@@ -29,7 +29,7 @@
                     <div class="card">
                         <div class="card-body table-responsive">
                             <h4 class="header-title">Form <?= $title; ?></h4>
-                            <?= form_open('pendaftaran/pendaftaran_soft/post') ?>
+                            <?= form_open_multipart('pendaftaran/pendaftaran_soft/post') ?>
                             <div class="row">
                                 <div class="col-xl-6">
                                     <div class="form-group">
@@ -77,17 +77,6 @@
                                                 </select>
                                             </div>
                                         </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="kategori_lab">Laboratorium</label>
-                                        <select class="form-control" name="kategori_lab">
-                                            <?php foreach ($get_kategori_register as $register) : ?>
-                                                <?php if ($register->kategori == "Software") : ?>
-                                                    <option value="<?= $register->id ?>"><?= $register->kategori ?></option>
-                                                <?php endif; ?>
-                                            <?php endforeach; ?>
-                                        </select>
                                     </div>
 
                                     <div class="row">
@@ -156,6 +145,11 @@
                                                 <input type="text" id="provinsi" name="provinsi" class="form-control" placeholder="Nama provinsi">
                                             </div>
                                         </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="foto">Foto</label>
+                                        <input type="file" id="foto" name="foto" class="form-control" placeholder="Upload foto">
                                     </div>
                                 </div> <!-- end col-->
                             </div>

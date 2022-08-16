@@ -192,18 +192,32 @@ class Mahasiswa extends CI_Controller
     public function hapus_all()
     {
         $id = $_POST['id'];
-        $this->m_mahasiswa->delete($id);
-        $this->session->set_flashdata(
-            'success',
-            '$(document).ready(function(e) {
+        if (!empty($id)) {
+            $this->m_mahasiswa->delete($id);
+            $this->session->set_flashdata(
+                'success',
+                '$(document).ready(function(e) {
                 Swal.fire({
                     type: "success",
                     title: "Sukses",
-                    text: "Semua data mahasiswa berhasil dihapus!"
+                    text: "Semua data berhasil dihapus!"
                 })
             })'
-        );
-        redirect('mahasiswa');
+            );
+            redirect('mahasiswa');
+        } else {
+            $this->session->set_flashdata(
+                'error',
+                '$(document).ready(function(e) {
+                Swal.fire({
+                    type: "error",
+                    title: "Gagal",
+                    text: "Data yang dipilih tidak ada!"
+                })
+            })'
+            );
+            redirect('mahasiswa');
+        }
     }
 }
 

@@ -89,6 +89,20 @@ class Pendaftaran extends CI_Controller
             );
             redirect('pendaftaran', 'refresh');
         } else {
+            $config['upload_path']    = './assets/backend/images/upload/';
+            $config['allowed_types']  = 'jpg|png|jpeg|svg';
+            $config['max_size']       = '1024';
+            $config['encrypt_name']    = TRUE;
+
+            $this->load->library('upload', $config);
+
+            if (!empty($_FILES['foto'])) {
+                # code...
+                $this->upload->do_upload('foto');
+                $data_icon = $this->upload->data();
+                $file_icon = $data_icon['file_name'];
+            }
+
             $data = [
                 'daftar_id'             => $this->input->post('daftar_id'),
                 'nama'                  => $this->input->post('nama'),
@@ -96,7 +110,7 @@ class Pendaftaran extends CI_Controller
                 'kelamin'               => $this->input->post('kelamin'),
                 'agama'                 => $this->input->post('agama'),
                 'kategori_id'           => $this->input->post('kategori_id'),
-                'kategori_lab'          => $this->input->post('kategori_lab'),
+                'kategori_lab'          => 3,
                 'semester'              => $this->input->post('semester'),
                 'alamat'                => $this->input->post('alamat'),
                 'nama_ortu'             => $this->input->post('nama_ortu'),
@@ -104,7 +118,8 @@ class Pendaftaran extends CI_Controller
                 'alamat_ortu'           => $this->input->post('alamat_ortu'),
                 'kabupaten'             => $this->input->post('kabupaten'),
                 'provinsi'              => $this->input->post('provinsi'),
-                'created_at'            => date("d-m-Y")
+                'created_at'            => date("d-m-Y"),
+                'foto'              => $file_icon
             ];
 
             $this->db->insert('tb_pendaftaran_h', $data);
@@ -182,13 +197,27 @@ class Pendaftaran extends CI_Controller
         } else {
             $id = $this->input->post('id');
 
+            $config['upload_path']    = './assets/backend/images/upload/';
+            $config['allowed_types']  = 'jpg|png|jpeg|svg';
+            $config['max_size']       = '1024';
+            $config['encrypt_name']    = TRUE;
+
+            $this->load->library('upload', $config);
+
+            if (!empty($_FILES['foto'])) {
+                # code...
+                $this->upload->do_upload('foto');
+                $data_icon = $this->upload->data();
+                $file_icon = $data_icon['file_name'];
+            }
+
             $data = [
                 'nama'                  => $this->input->post('nama'),
                 'nim'                   => $this->input->post('nim'),
                 'kelamin'               => $this->input->post('kelamin'),
                 'agama'                 => $this->input->post('agama'),
                 'kategori_id'           => $this->input->post('kategori_id'),
-                'kategori_lab'          => $this->input->post('kategori_lab'),
+                'kategori_lab'          => 3,
                 'semester'              => $this->input->post('semester'),
                 'alamat'                => $this->input->post('alamat'),
                 'nama_ortu'             => $this->input->post('nama_ortu'),
@@ -196,7 +225,8 @@ class Pendaftaran extends CI_Controller
                 'alamat_ortu'           => $this->input->post('alamat_ortu'),
                 'kabupaten'             => $this->input->post('kabupaten'),
                 'provinsi'              => $this->input->post('provinsi'),
-                'updated_at'            => date("d-m-Y")
+                'updated_at'            => date("d-m-Y"),
+                'foto'              => $$file_icon
             ];
 
             $this->db->where('id', $id);
@@ -258,6 +288,14 @@ class Pendaftaran extends CI_Controller
             $string .= $code[$pos];
         }
         return 'HW-' . date('Y') . '/' . date('m') . '/' . $string;
+    }
+
+    public function cetak()
+    {
+        $semester = $this->input->post('semester');
+        $this->db->where('semester', $semester);
+        $data['get_data'] = $this->db->get('tb_pendaftaran_h')->result();
+        $this->load->view('cetak', $data, FALSE);
     }
 }
 

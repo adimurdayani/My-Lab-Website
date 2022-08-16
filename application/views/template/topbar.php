@@ -65,7 +65,7 @@
                     </div>
 
                     <!-- item-->
-                    <a href="<?= base_url('backend/user') ?>" class="dropdown-item notify-item">
+                    <a href="<?= base_url('user') ?>" class="dropdown-item notify-item">
                         <i class="fe-settings"></i>
                         <span>Settings</span>
                     </a>

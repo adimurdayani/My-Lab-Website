@@ -7,13 +7,16 @@ class M_informasi extends CI_Model
 
     public function get_informasi()
     {
-        $query =
-            "SELECT `tb_informasi`.*, `tb_kategori_register`.`kategori`
-                FROM `tb_informasi` 
-                JOIN `tb_kategori_register` ON `tb_informasi`.`kategori_register_id` = `tb_kategori_register`.`id`
-                ORDER BY `tb_informasi`.`id` DESC
-                ";
-        return $this->db->query($query)->result_array();
+        // $query =
+        //     "SELECT `tb_informasi`.*, `tb_kategori_register`.`kategori`
+        //         FROM `tb_informasi` 
+        //         JOIN `tb_kategori_register` ON `tb_informasi`.`kategori_register_id` = `tb_kategori_register`.`id`
+        //         ORDER BY `tb_informasi`.`id` DESC
+        //         ";
+        // return $this->db->query($query)->result_array();
+        $this->db->order_by('id', 'desc');
+
+        return $this->db->get('tb_informasi')->result_array();
     }
 
     public function get_informasi_id($id)

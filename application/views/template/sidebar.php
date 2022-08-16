@@ -20,28 +20,10 @@
                 <li class="menu-title">Modul Data</li>
 
                 <li>
-                    <a href="#profile" data-toggle="collapse">
+                    <a href="<?= base_url('mahasiswa') ?>">
                         <i class="fe-database"></i>
                         <span> Mahasiswa </span>
-                        <span class="menu-arrow"></span>
                     </a>
-                    <div class="collapse" id="profile">
-                        <ul class="nav-second-level">
-
-                            <li>
-                                <a href="<?= base_url('mahasiswa') ?>">List</a>
-                            </li>
-
-                            <li>
-                                <a href="<?= base_url('mahasiswa/tambah') ?>">Post Mahasiswa</a>
-                            </li>
-
-                            <!-- <li>
-                                <a href="<?= base_url('mahasiswa/konsentrasi') ?>">Konsentrasi</a>
-                            </li> -->
-
-                        </ul>
-                    </div>
                 </li>
 
                 <li>
@@ -53,37 +35,15 @@
                     <div class="collapse" id="pendaftaran">
                         <ul class="nav-second-level">
                             <li>
-                                <a href="#pendaftaran2" data-toggle="collapse">
-                                    Hardware <span class="menu-arrow"></span>
+                                <a href="<?= base_url('pendaftaran') ?>">
+                                    Hardware
                                 </a>
-                                <div class="collapse" id="pendaftaran2">
-                                    <ul class="nav-second-level">
-                                        <li>
-                                            <a href="<?= base_url('pendaftaran') ?>">List Hardware</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="<?= base_url('pendaftaran/tambah') ?>">Post Hardware</a>
-                                        </li>
-                                    </ul>
-                                </div>
                             </li>
 
                             <li>
-                                <a href="#pendaftaran3" data-toggle="collapse">
-                                    Software <span class="menu-arrow"></span>
+                                <a href="<?= base_url('pendaftaran/pendaftaran_soft') ?>">
+                                    Software
                                 </a>
-                                <div class="collapse" id="pendaftaran3">
-                                    <ul class="nav-second-level">
-                                        <li>
-                                            <a href="<?= base_url('pendaftaran/pendaftaran_soft') ?>">List Software</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="<?= base_url('pendaftaran/pendaftaran_soft/tambah') ?>">Post Software</a>
-                                        </li>
-                                    </ul>
-                                </div>
                             </li>
 
                             <li>
@@ -138,6 +98,13 @@
                 </li>
 
                 <li>
+                    <a href="<?= base_url('kelompok') ?>">
+                        <i class="fe-user-plus"></i>
+                        <span> Kelompok</span>
+                    </a>
+                </li>
+
+                <li>
                     <a href="<?= base_url('jadwal') ?>">
                         <i class="fe-calendar"></i>
                         <span> Jadwal Praktikum</span>
@@ -152,22 +119,10 @@
                 </li>
 
                 <li>
-                    <a href="#sertifikat" data-toggle="collapse">
+                    <a href="<?= base_url('sertifikat') ?>">
                         <i class="fe-file-text"></i>
                         <span> Sertifikat</span>
-                        <span class="menu-arrow"></span>
                     </a>
-                    <div class="collapse" id="sertifikat">
-                        <ul class="nav-second-level">
-                            <li>
-                                <a href="<?= base_url('sertifikat') ?>">List </a>
-                            </li>
-                            <li>
-                                <a href="<?= base_url('sertifikat/tambah') ?>">Post Sertifikat</a>
-                            </li>
-
-                        </ul>
-                    </div>
                 </li>
 
                 <li class="menu-title">Pengaturan</li>

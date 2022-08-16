@@ -26,51 +26,133 @@
             <div class="row">
                 <div class="col-lg">
                     <div class="card">
-                        <form action="<?= base_url('pendaftaran/hapus_all/') ?>" method="POST" id="form-delete">
-                            <div class="row p-2">
-                                <div class="col-md-6">
-                                    <button type="submit" class="btn btn-danger" id="hapus"><i class="fe-trash"></i> Hapus</button>
-                                    <a href="<?= base_url('pendaftaran/tambah') ?>" class="btn btn-outline-blue"><i class="fe-plus"></i> Tambah</a>
+                        <div class="card-body table-responsive">
+                            <div class="row">
+                                <div class="col-md-4">
+
+                                </div>
+                                <div class="col-md-4">
+
+                                    <?php
+                                    $s = $this->input->post('semester');
+                                    if (!empty($s)) {
+                                        $this->db->where('semester', $s);
+                                        $cetak = $this->db->get('tb_pendaftaran_h')->row();
+                                    }
+                                    ?>
+                                    <form action="" method="post">
+                                        <div class="form-group">
+                                            <label for="">Pilih Semester</label>
+                                            <select name="semester" id="semester" class="form-control">
+                                                <option value="">-- Pilih Semester --</option>
+                                                <option value="Semester I">Semester I</option>
+                                                <option value="Semester II">Semester II</option>
+                                                <option value="Semester III">Semester III</option>
+                                                <option value="Semester IV">Semester IV</option>
+                                                <option value="Semester V">Semester V</option>
+                                                <option value="Semester VI">Semester VI</option>
+                                                <option value="Semester VII">Semester VII</option>
+                                                <option value="Semester VIII">Semester VIII</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="text-center">
+                                            <button class="btn btn-primary" type="submit"><i class="fe-search"></i> Cari</button>
+                                        </div>
+                                    </form>
+
+                                    <?php if (!empty($s)) : ?>
+                                        <?php if ($cetak) : ?>
+                                            <form action="<?= base_url('pendaftaran/cetak') ?>" method="post" target="_blank">
+                                                <input type="hidden" name="semester" value="<?= $s ?>">
+                                                <div class="text-center">
+                                                    <button class="btn btn-success print mt-2" type="submit"><i class="fe-printer"></i> Cetak</a>
+                                                </div>
+                                            </form>
+                                        <?php endif; ?>
+                                    <?php endif; ?>
+                                </div>
+                                <div class="col-md-4">
+
                                 </div>
                             </div>
-                            <div class="card-body table-responsive">
-                                <h4 class="header-title">Data <?= $title; ?></h4>
-                                <table id="basic-datatable" class="table nowrap w-100">
-                                    <thead>
-                                        <tr>
-                                            <th><input type="checkbox" id="chack-all"></th>
-                                            <th>ID Daftar</th>
-                                            <th>NIM</th>
-                                            <th>Nama</th>
-                                            <th>Kelamin</th>
-                                            <th>Semester</th>
-                                            <th>Kategori</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
+                            <form action="<?= base_url('pendaftaran/hapus_all/') ?>" method="POST" id="form-delete">
+                                <a href="<?= base_url('pendaftaran/tambah') ?>" class="btn btn-outline-blue mb-2"><i class="fe-plus"></i> Tambah</a>
+                                <button type="submit" class="btn btn-danger mb-2" id="hapus"><i class="fe-trash"></i> Hapus</button>
 
-                                    <tbody>
+                                <?php
+                                $semester = $this->input->post('semester');
+                                if (!empty($semester)) :
+                                    $this->db->order_by('id', 'desc');
+                                    $this->db->where('semester', $semester);
+                                    $get_data = $this->db->get('tb_pendaftaran_h')->result();
+                                ?>
 
-                                        <?php foreach ($get_pendaftaran as $data) : ?>
+                                    <table id="basic-datatable" class="table nowrap w-100">
+                                        <thead>
                                             <tr>
-                                                <td><input type="checkbox" class="check-item" name="id[]" value="<?= $data->id ?>"></td>
-                                                <td><?= $data->daftar_id ?></td>
-                                                <td><?= $data->nim ?></td>
-                                                <td><?= $data->nama ?></td>
-                                                <td><?= $data->kelamin ?></td>
-                                                <td><?= $data->semester ?></td>
-                                                <td><?= $data->kategori ?></td>
-                                                <td>
-                                                    <a href="javascript:void(0);" data-target="#detail<?= $data->id ?>" class="btn btn-outline-info" data-toggle="modal" title="Detail pendaftaran" data-plugin="tippy" data-tippy-placement="top"><i class="fe-eye"></i></a>
-                                                    <a href="<?= base_url('pendaftaran/edit/') . base64_encode($data->id) ?>" class="btn btn-outline-warning" title="Edit pendaftaran" data-plugin="tippy" data-tippy-placement="top"><i class="fe-edit"></i></a>
-                                                    <a href="<?= base_url('pendaftaran/hapus/') . base64_encode($data->id) ?>" class="btn btn-outline-danger hapus" title="Hapus mahasiswa" data-plugin="tippy" data-tippy-placement="top"><i class="fe-trash"></i> </a>
-                                                </td>
+                                                <th><input type="checkbox" id="chack-all"></th>
+                                                <th>ID Daftar</th>
+                                                <th>NIM</th>
+                                                <th>Nama</th>
+                                                <th>Kelamin</th>
+                                                <th>Semester</th>
+                                                <th>Kategori</th>
+                                                <th>Action</th>
                                             </tr>
-                                        <?php endforeach; ?>
-                                    </tbody>
-                                </table>
+                                        </thead>
 
-                            </div> <!-- end card body-->
+                                        <tbody>
+
+                                            <?php foreach ($get_data as $data) :
+                                                $kat_prak = $this->db->get_where('tb_kategori_praktikum', ['id' => $data->kategori_id])->row();
+                                            ?>
+                                                <tr>
+                                                    <td><input type="checkbox" class="check-item" name="id[]" value="<?= $data->id ?>"></td>
+                                                    <td><?= $data->daftar_id ?></td>
+                                                    <td><?= $data->nim ?></td>
+                                                    <td><?= $data->nama ?></td>
+                                                    <td><?= $data->kelamin ?></td>
+                                                    <td><?= $data->semester ?></td>
+                                                    <td><?= $kat_prak->kategori ?></td>
+                                                    <td>
+                                                        <a href="javascript:void(0);" data-target="#detail<?= $data->id ?>" class="btn btn-outline-info" data-toggle="modal" title="Detail pendaftaran" data-plugin="tippy" data-tippy-placement="top"><i class="fe-eye"></i></a>
+                                                        <a href="<?= base_url('pendaftaran/edit/') . base64_encode($data->id) ?>" class="btn btn-outline-warning" title="Edit pendaftaran" data-plugin="tippy" data-tippy-placement="top"><i class="fe-edit"></i></a>
+                                                        <a href="<?= base_url('pendaftaran/hapus/') . base64_encode($data->id) ?>" class="btn btn-outline-danger hapus" title="Hapus mahasiswa" data-plugin="tippy" data-tippy-placement="top"><i class="fe-trash"></i> </a>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                <?php else : ?>
+                                    <table class="table nowrap w-100">
+                                        <thead>
+                                            <tr>
+                                                <th><input type="checkbox" id="chack-all"></th>
+                                                <th>ID Daftar</th>
+                                                <th>NIM</th>
+                                                <th>Nama</th>
+                                                <th>Kelamin</th>
+                                                <th>Semester</th>
+                                                <th>Kategori</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tbody>
+                                    </table>
+                                <?php endif; ?>
+
+                        </div> <!-- end card body-->
                         </form>
                     </div> <!-- end card -->
                 </div><!-- end col-->
@@ -171,6 +253,8 @@
                                 </div>
                             </div>
                         </div>
+
+                        <img src="<?= base_url('assets/backend/images/upload/') . $detail->foto ?>" class="img-thumbnail mt-2" width="200px" alt="">
 
                     </div>
                     <div class="modal-footer">
