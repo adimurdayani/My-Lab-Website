@@ -22,7 +22,7 @@ class pendaftaran_hardware extends MY_Controller
             'kelamin'               => $this->post('kelamin'),
             'agama'                 => $this->post('agama'),
             'kategori_id'           => $this->post('kategori_id'),
-            'kategori_lab'          => $this->post('kategori_lab'),
+            'kategori_lab'          => 3,
             'semester'              => $this->post('semester'),
             'alamat'                => $this->post('alamat'),
             'nama_ortu'             => $this->post('nama_ortu'),
@@ -54,13 +54,13 @@ class pendaftaran_hardware extends MY_Controller
 
         if ($mahasiswa) {
             $this->response([
-                'status'        => 1,
+                'status'        => 200,
                 'message'       => 'sukses',
                 'hardware'     => $mahasiswa
             ], REST_Controller::HTTP_OK);
         } else {
             $this->response([
-                'status'  => 0,
+                'status'  => 400,
                 'message' => 'data tidak ditemukan'
             ], REST_Controller::HTTP_BAD_REQUEST);
         }
@@ -77,19 +77,19 @@ class pendaftaran_hardware extends MY_Controller
         return 'HW-' . date('Y') . '/' . date('m') . '/' . $string;
     }
 
-    public function upload_foto($id)
+    public function upload_foto_post($nim)
     {
 
         $config['upload_path']    = './assets/backend/images/upload/';
-        $config['allowed_types']  = 'jpg|png|jpeg|svg';
+        $config['allowed_types']  = 'jpg|png|jpeg';
         $config['max_size']       = '1024';
         $config['encrypt_name']    = TRUE;
 
         $this->load->library('upload', $config);
 
-        if (!empty($_FILES['foto'])) {
+        if (!empty($_FILES['image'])) {
             # code...
-            $this->upload->do_upload('foto');
+            $this->upload->do_upload('image');
             $data_icon = $this->upload->data();
             $file_icon = $data_icon['file_name'];
         } else {
@@ -100,20 +100,62 @@ class pendaftaran_hardware extends MY_Controller
         }
 
         $data = [
-            'foto' => $file_icon
+            'image' => $file_icon
         ];
 
-        $this->db->where('id', $id);
-        $this->db->update('tb_pendaftaran_h', $data);
+        $this->db->where('nim', $nim);
+        $output = $this->db->update('tb_pendaftaran_h', $data);
         if ($data) {
             $this->response([
-                'status' => 1,
+                'status' => 200,
                 'message' => 'data tersimpan',
-                'transaksi' => $data
+                'foto' => $data
             ], REST_Controller::HTTP_OK);
         } else {
             $this->response([
+                'status' => 400,
+                'message' => 'data gagal tersimpan'
+            ], REST_Controller::HTTP_BAD_REQUEST);
+        }
+    }
+
+    public function upload_transaksi_post($nim)
+    {
+
+        $config['upload_path']    = './assets/backend/images/upload/';
+        $config['allowed_types']  = 'jpg|png|jpeg';
+        $config['max_size']       = '1024';
+        $config['encrypt_name']    = TRUE;
+
+        $this->load->library('upload', $config);
+
+        if (!empty($_FILES['img_transaksi'])) {
+            # code...
+            $this->upload->do_upload('img_transaksi');
+            $data_icon = $this->upload->data();
+            $file_icon = $data_icon['file_name'];
+        } else {
+            $this->response([
                 'status' => 0,
+                'message' => 'gambar tidak ditemukan'
+            ], REST_Controller::HTTP_BAD_REQUEST);
+        }
+
+        $data = [
+            'img_transaksi' => $file_icon
+        ];
+
+        $this->db->where('nim', $nim);
+        $output = $this->db->update('tb_pendaftaran_h', $data);
+        if ($data) {
+            $this->response([
+                'status' => 200,
+                'message' => 'data tersimpan',
+                'foto' => $data
+            ], REST_Controller::HTTP_OK);
+        } else {
+            $this->response([
+                'status' => 400,
                 'message' => 'data gagal tersimpan'
             ], REST_Controller::HTTP_BAD_REQUEST);
         }

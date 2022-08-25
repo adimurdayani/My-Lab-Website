@@ -147,12 +147,13 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
 
-                            <div class="form-group">
-                                <label for="foto">Foto</label>
-                                <input type="file" id="foto" name="foto" class="form-control" placeholder="Upload foto">
-                            </div>
+
+                                    <div class="form-group">
+                                        <label for="foto">Foto</label>
+                                        <input type="file" id="image" name="image" class="form-control" placeholder="Upload foto">
+                                        <img src="<?= base_url('assets/backend/images/upload/') . $get_pendaftaran->image ?>" class="img-thumbnail mt-2" width="200px" alt="">
+                                    </div>
                                 </div> <!-- end col-->
                             </div>
                             <!-- end row -->

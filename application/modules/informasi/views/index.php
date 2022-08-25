@@ -44,10 +44,11 @@
                                     </thead>
 
                                     <tbody>
-                                        <?php foreach ($get_informasi as $data) : ?>
+                                        <?php foreach ($get_informasi as $data) :
+                                            $kategori = $this->db->get_where('tb_kategori_register', ['id' => $data['kategori_register_id']])->row_array() ?>
                                             <tr>
                                                 <td><input type="checkbox" class="check-item" name="id[]" value="<?= $data['id'] ?>"></td>
-                                                <td><?= $data['kategori'] ?></td>
+                                                <td><?= $kategori['kategori'] ?></td>
                                                 <td><?= $data['keterangan'] ?></td>
                                                 <td class="text-center"><?= $data['tanggal_buka'] ?></td>
                                                 <td class="text-center"><?= $data['tanggal_tutup'] ?></td>

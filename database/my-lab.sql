@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 16 Agu 2022 pada 21.51
+-- Waktu pembuatan: 25 Agu 2022 pada 16.37
 -- Versi server: 10.4.21-MariaDB
 -- Versi PHP: 7.3.31
 
@@ -67,6 +67,13 @@ CREATE TABLE `tb_informasi` (
   `tanggal_buka` varchar(100) NOT NULL,
   `tanggal_tutup` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tb_informasi`
+--
+
+INSERT INTO `tb_informasi` (`id`, `kategori_register_id`, `keterangan`, `tanggal_buka`, `tanggal_tutup`) VALUES
+(1, 3, 'asfdasd', '2022-08-25', '2022-08-26');
 
 -- --------------------------------------------------------
 
@@ -133,12 +140,12 @@ CREATE TABLE `tb_kategori_praktikum` (
 --
 
 INSERT INTO `tb_kategori_praktikum` (`id`, `kategori`, `keterangan`, `created_at`) VALUES
-(4, 'Praktikum Elektronika digital', 'praktek elektronika digital', '2022-04-13'),
-(5, 'Praktikum Pascal', 'praktikum pascal', '2022-06-03'),
-(6, 'Praktikum C++', 'praktikum c++', '2022-06-03'),
-(7, 'Praktikum Program Web', 'praktikum program web', '2022-06-03'),
-(8, 'Praktikum Java', 'praktikum java', '2022-06-03'),
-(9, 'Praktikum Microcontroller', 'praktikum microcontroller', '2022-06-03');
+(4, 'Praktikum Elektronika digital', 'hardware', '2022-04-13'),
+(5, 'Praktikum Pascal', 'software', '2022-06-03'),
+(6, 'Praktikum C++', 'software', '2022-06-03'),
+(7, 'Praktikum Program Web', 'software', '2022-06-03'),
+(8, 'Praktikum Java', 'software', '2022-06-03'),
+(9, 'Praktikum Microcontroller', 'hardware', '2022-06-03');
 
 -- --------------------------------------------------------
 
@@ -527,7 +534,7 @@ CREATE TABLE `tb_pendaftaran_h` (
   `provinsi` varchar(128) DEFAULT NULL,
   `created_at` varchar(128) DEFAULT NULL,
   `updated_at` varchar(128) DEFAULT NULL,
-  `foto` text DEFAULT NULL,
+  `image` text DEFAULT NULL,
   `img_transaksi` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -535,13 +542,8 @@ CREATE TABLE `tb_pendaftaran_h` (
 -- Dumping data untuk tabel `tb_pendaftaran_h`
 --
 
-INSERT INTO `tb_pendaftaran_h` (`id`, `daftar_id`, `nama`, `nim`, `kelamin`, `agama`, `kategori_id`, `kategori_lab`, `semester`, `alamat`, `nama_ortu`, `pekerjaan_ortu`, `alamat_ortu`, `kabupaten`, `provinsi`, `created_at`, `updated_at`, `foto`, `img_transaksi`) VALUES
-(1, 'HW-2022/04/CH0DLG51AV', 'Adi Murdayani', '1504411077', 'Perempuan', 'Islam', 4, 3, 'Semester I', 'sdfasd', 'asdfasd', 'asdfa', 'sdfasdf', 'asdfas', 'dfasdf', '17-04-2022', NULL, NULL, '0'),
-(2, 'HW-2022/05/F621Q5W025', 'Adi Murdayani', '1504411078', 'laki-laki', 'islam', 4, 3, 'semester 1', 'sukamaju', 'ibu', 'ortu', 'sukamaju', 'luwu utara', 'sulawesi selatan', '22-05-2022', NULL, NULL, '0'),
-(4, 'HW-2022/05/0NXP5R4SLH', 'Asdfasdfasd', '1504411079', 'Perempuan', 'Islam', 4, 3, 'Semester IV', 'Asdfasdf', 'Asdfasd', 'Asdfasd', 'Fasdfasd', 'Yogyakarta', 'DI Yogyakarta', '22-05-2022', NULL, NULL, '0'),
-(5, 'HW-2022/05/QS5YSDMCY1', 'Ade Irawan', '1504411080', 'Laki-Laki', 'Islam', 4, 3, 'Semester III', 'Palopo', 'Jakarta Utara', 'Adfkajksdf', 'Jahdfk', 'Kjahdfkas', 'DKI Jakarta', '25-05-2022', NULL, NULL, '0'),
-(6, 'HW-2022/06/YJ6VSARTNQ', 'Sembarang', '1504411007123', 'Perempuan', 'Islam', 4, 3, 'Semester III', 'Sss', 'Jakarta Utara', 'Kasdfl', 'Lkadjfl', 'Lkjalsdf', 'DKI Jakarta', '03-06-2022', NULL, NULL, '0'),
-(7, 'HW-2022/08/YM78Z0OKZR', 'Adi Murdayani', '2147483647', 'Laki-Laki', 'Islam', 4, 3, 'Semester I', 'asfasd', 'asdas', 'IRT (Ibu Rumah Tangga)', 'asfasd', 'asdfasd', 'Sulawesi Selatan', '17-08-2022', NULL, 'ce706895de9dd3d1e3da94b16d97e432.png', NULL);
+INSERT INTO `tb_pendaftaran_h` (`id`, `daftar_id`, `nama`, `nim`, `kelamin`, `agama`, `kategori_id`, `kategori_lab`, `semester`, `alamat`, `nama_ortu`, `pekerjaan_ortu`, `alamat_ortu`, `kabupaten`, `provinsi`, `created_at`, `updated_at`, `image`, `img_transaksi`) VALUES
+(1, 'HW-2022/08/BH46R336K3', 'Adi Murdayani', '2147483647123', 'Perempuan', 'Islam', 4, 3, 'Semester I', 'asdf', 'Belitung', 'asdf', 'asdf', 'asdf', 'Bangka Belitung', '25-08-2022', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -567,7 +569,7 @@ CREATE TABLE `tb_pendaftaran_s` (
   `provinsi` varchar(128) DEFAULT NULL,
   `created_at` varchar(128) DEFAULT NULL,
   `updated_at` varchar(128) DEFAULT NULL,
-  `foto` text DEFAULT NULL,
+  `image` text DEFAULT NULL,
   `img_transaksi` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -575,11 +577,10 @@ CREATE TABLE `tb_pendaftaran_s` (
 -- Dumping data untuk tabel `tb_pendaftaran_s`
 --
 
-INSERT INTO `tb_pendaftaran_s` (`id`, `daftar_id`, `nama`, `nim`, `kelamin`, `agama`, `kategori_id`, `kategori_lab`, `semester`, `alamat`, `nama_ortu`, `pekerjaan_ortu`, `alamat_ortu`, `kabupaten`, `provinsi`, `created_at`, `updated_at`, `foto`, `img_transaksi`) VALUES
-(1, 'SW-2022/04/74C27L97UZ', 'Adi Murdayani', '1504411060', 'Laki-Laki', 'Islam', 4, 4, 'Semester II', 'asdfasdf', 'asdfasd', 'fasdf', 'asdfasdf', 'asdf', 'asdfasd', '17-04-2022', '17-04-2022', NULL, NULL),
-(3, 'SW-2022/05/864E95BEO3', 'Aasdfasdf', '1504411061', 'Perempuan', 'Islam', 4, 4, 'Semester IV', 'Asdfasdas', 'Asfasd', 'Asdfasd', 'Asdfasd', 'Tangerang', 'Banten', '22-05-2022', NULL, NULL, NULL),
-(4, 'SW-2022/05/QU9Q5SR161', 'Dsfasdf', '1504411062', 'Perempuan', 'Kristen', 4, 4, 'Semester V', 'Asdfasdfsad', 'Rejang Lebong', 'Asdfasdf', 'Asdfsd', 'Fsadf', 'Bengkulu', '25-05-2022', NULL, NULL, NULL),
-(5, 'SW-2022/08/RZQK2A02T7', 'Adi Murdayaniadsfs', '2147483647', 'Laki-Laki', 'Budha', 5, 4, 'Semester I', 'dfasdf', 'asdf', 'asdf', 'asdf', 'asdf', 'asdf', '17-08-2022', NULL, '7c0f1091aaf696bf7040cf2566bc29da.png', NULL);
+INSERT INTO `tb_pendaftaran_s` (`id`, `daftar_id`, `nama`, `nim`, `kelamin`, `agama`, `kategori_id`, `kategori_lab`, `semester`, `alamat`, `nama_ortu`, `pekerjaan_ortu`, `alamat_ortu`, `kabupaten`, `provinsi`, `created_at`, `updated_at`, `image`, `img_transaksi`) VALUES
+(1, 'SW-2022/08/3854XNJVQD', 'Adi Murdayani', '2147483647123', 'Laki-Laki', 'Islam', 5, 4, 'Semester I', 'asdf', 'Kaur', 'sdf', 'asdf', 'asdf', 'Bengkulu', '25-08-2022', NULL, NULL, NULL),
+(2, 'SW-2022/08/8BE1PI6UBB', 'Adi Murdayani', '2147483647123', 'Laki-Laki', 'Islam', 5, 4, 'Semester I', 'asdf', 'Denpasar', 'asdf', 'asdf', 'asdf', 'Bali', '25-08-2022', NULL, NULL, NULL),
+(3, 'SW-2022/08/USB9XS0EOS', 'Adi Murdayani', '2147483647123', 'Laki-Laki', 'Islam', 6, 4, 'Semester I', 'asd', 'Bengkulu Utara', 'asdf', 'sadf', 'asdf', 'Bengkulu', '25-08-2022', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -669,7 +670,8 @@ INSERT INTO `tb_visitor` (`id`, `ip`, `date`, `hits`, `os`, `browser`, `versi`, 
 (16, '::1', '2022-06-04', 3, 'Windows 10', 'Chrome', '102.0.5005.63', '1654326975', '2022-06-04 14:15:25'),
 (17, '::1', '2022-06-05', 6, 'Windows 10', 'Chrome', '102.0.5005.63', '1654426280', '2022-06-05 14:19:39'),
 (18, '::1', '2022-08-15', 6, 'Windows 10', 'Chrome', '104.0.0.0', '1660572222', '2022-08-15 20:49:05'),
-(19, '::1', '2022-08-16', 3, 'Windows 10', 'Chrome', '104.0.0.0', '1660667516', '2022-08-16 23:31:51');
+(19, '::1', '2022-08-16', 3, 'Windows 10', 'Chrome', '104.0.0.0', '1660667516', '2022-08-16 23:31:51'),
+(20, '::1', '2022-08-25', 3, 'Windows 10', 'Chrome', '104.0.0.0', '1661416804', '2022-08-25 15:39:59');
 
 -- --------------------------------------------------------
 
@@ -704,7 +706,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `email`, `activation_selector`, `activation_code`, `forgotten_password_selector`, `forgotten_password_code`, `forgotten_password_time`, `remember_selector`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
-(1, '127.0.0.1', 'administrator', '$2y$10$3/QfuZWLF6GbiWXxwXIbFuXkIMEikgKAltNqQiI6Ha.ugTjH.fRUy', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1660667516, 1, 'Admin', 'istrator', 'ADMIN', '0');
+(1, '127.0.0.1', 'administrator', '$2y$10$3/QfuZWLF6GbiWXxwXIbFuXkIMEikgKAltNqQiI6Ha.ugTjH.fRUy', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1661416804, 1, 'Admin', 'istrator', 'ADMIN', '0');
 
 -- --------------------------------------------------------
 
@@ -877,7 +879,7 @@ ALTER TABLE `login_attempts`
 -- AUTO_INCREMENT untuk tabel `tb_informasi`
 --
 ALTER TABLE `tb_informasi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_jadwal`
@@ -937,13 +939,13 @@ ALTER TABLE `tb_nilai_s`
 -- AUTO_INCREMENT untuk tabel `tb_pendaftaran_h`
 --
 ALTER TABLE `tb_pendaftaran_h`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_pendaftaran_s`
 --
 ALTER TABLE `tb_pendaftaran_s`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_register`
@@ -961,7 +963,7 @@ ALTER TABLE `tb_sertifikat`
 -- AUTO_INCREMENT untuk tabel `tb_visitor`
 --
 ALTER TABLE `tb_visitor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`

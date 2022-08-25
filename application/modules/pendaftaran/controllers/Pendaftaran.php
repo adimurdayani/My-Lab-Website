@@ -96,9 +96,9 @@ class Pendaftaran extends CI_Controller
 
             $this->load->library('upload', $config);
 
-            if (!empty($_FILES['foto'])) {
+            if (!empty($_FILES['image'])) {
                 # code...
-                $this->upload->do_upload('foto');
+                $this->upload->do_upload('image');
                 $data_icon = $this->upload->data();
                 $file_icon = $data_icon['file_name'];
             }
@@ -119,7 +119,7 @@ class Pendaftaran extends CI_Controller
                 'kabupaten'             => $this->input->post('kabupaten'),
                 'provinsi'              => $this->input->post('provinsi'),
                 'created_at'            => date("d-m-Y"),
-                'foto'              => $file_icon
+                'image'              => $file_icon
             ];
 
             $this->db->insert('tb_pendaftaran_h', $data);
@@ -204,9 +204,9 @@ class Pendaftaran extends CI_Controller
 
             $this->load->library('upload', $config);
 
-            if (!empty($_FILES['foto'])) {
+            if (!empty($_FILES['image'])) {
                 # code...
-                $this->upload->do_upload('foto');
+                $this->upload->do_upload('image');
                 $data_icon = $this->upload->data();
                 $file_icon = $data_icon['file_name'];
             }
@@ -226,7 +226,7 @@ class Pendaftaran extends CI_Controller
                 'kabupaten'             => $this->input->post('kabupaten'),
                 'provinsi'              => $this->input->post('provinsi'),
                 'updated_at'            => date("d-m-Y"),
-                'foto'              => $$file_icon
+                'image'              => $$file_icon
             ];
 
             $this->db->where('id', $id);

@@ -254,7 +254,7 @@
                                 </div>
                             </div>
                         </div>
-                        <img src="<?= base_url('assets/backend/images/upload/') . $detail->foto ?>" class="img-thumbnail mt-2" width="200px" alt="">
+                        <img src="<?= base_url('assets/backend/images/upload/') . $detail->image ?>" class="img-thumbnail mt-2" width="200px" alt="">
 
                     </div>
                     <div class="modal-footer">
