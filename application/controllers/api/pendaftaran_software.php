@@ -8,27 +8,6 @@ class pendaftaran_software extends MY_Controller
     public function index_post()
     {
 
-        $config['upload_path']    = './assets/backend/images/upload/';
-        $config['allowed_types']  = 'jpg|png|jpeg|svg';
-        $config['max_size']       = '1024';
-        $config['encrypt_name']    = TRUE;
-
-        $this->load->library('upload', $config);
-
-        if (!empty($_FILES['foto'])) {
-            # code...
-            $this->upload->do_upload('foto');
-            $data_icon = $this->upload->data();
-            $file_icon = $data_icon['file_name'];
-        }
-
-        if (!empty($_FILES['img_transaksi'])) {
-            # code...
-            $this->upload->do_upload('img_transaksi');
-            $data_transaksi = $this->upload->data();
-            $file_transaksi = $data_transaksi['file_name'];
-        }
-
         $kode = $this->generate_code(10);
         $data = [
             'daftar_id'             => $kode,
@@ -45,9 +24,7 @@ class pendaftaran_software extends MY_Controller
             'alamat_ortu'           => $this->post('alamat_ortu'),
             'kabupaten'             => $this->post('kabupaten'),
             'provinsi'              => $this->post('provinsi'),
-            'created_at'            => date("d-m-Y"),
-            'foto'                  => $file_icon,
-            'img_transaksi'         => $file_transaksi
+            'created_at'            => date("d-m-Y")
         ];
 
         $output = $this->db->insert('tb_pendaftaran_s', $data);
@@ -93,6 +70,48 @@ class pendaftaran_software extends MY_Controller
             $string .= $code[$pos];
         }
         return 'SW-' . date('Y') . '/' . date('m') . '/' . $string;
+    }
+
+    public function upload_foto($id)
+    {
+
+        $config['upload_path']    = './assets/backend/images/upload/';
+        $config['allowed_types']  = 'jpg|png|jpeg|svg';
+        $config['max_size']       = '1024';
+        $config['encrypt_name']    = TRUE;
+
+        $this->load->library('upload', $config);
+
+        if (!empty($_FILES['foto'])) {
+            # code...
+            $this->upload->do_upload('foto');
+            $data_icon = $this->upload->data();
+            $file_icon = $data_icon['file_name'];
+        } else {
+            $this->response([
+                'status' => 0,
+                'message' => 'gambar tidak ditemukan'
+            ], REST_Controller::HTTP_BAD_REQUEST);
+        }
+
+        $data = [
+            'foto' => $file_icon
+        ];
+
+        $this->db->where('id', $id);
+        $this->db->update('tb_pendaftaran_s', $data);
+        if ($data) {
+            $this->response([
+                'status' => 1,
+                'message' => 'data tersimpan',
+                'transaksi' => $data
+            ], REST_Controller::HTTP_OK);
+        } else {
+            $this->response([
+                'status' => 0,
+                'message' => 'data gagal tersimpan'
+            ], REST_Controller::HTTP_BAD_REQUEST);
+        }
     }
 }
 
